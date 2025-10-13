@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Inscrição - Etapa 13</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+        :root {
+            --primary-blue: #39497E;
+            --light-blue: #F0F4FF;
+            --text-color: #333;
+            --label-color: #555;
+            --border-color: #ccc;
+            --white: #fff;
+            --danger-color: #d9534f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light-blue);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 1200px; /* Aumentado para a tabela */
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .logo {
+            font-weight: 700;
+            font-size: 1.5em;
+            letter-spacing: 1px;
+        }
+
+        .header .user-info {
+            display: flex;
+            align-items: center;
+            font-size: 0.9em;
+        }
+
+        .header .user-info i {
+            font-size: 1.8em;
+            margin-right: 10px;
+        }
+
+        .form-body {
+            padding: 25px 40px;
+        }
+
+        .form-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .back-arrow {
+            font-size: 1.5em;
+            color: var(--label-color);
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        .form-title-section {
+            flex-grow: 1;
+            text-align: center;
+        }
+        
+        .form-title {
+            color: var(--primary-blue);
+            font-size: 1.8em;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .progress-indicator {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 500;
+            color: var(--label-color);
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-blue);
+        }
+        
+        .section-description {
+            background-color: var(--light-blue);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label, .question-label {
+            font-weight: 500;
+            color: var(--label-color);
+            margin-bottom: 10px;
+            display: block;
+            font-size: 0.95em;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1em;
+            font-family: 'Roboto', sans-serif;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(57, 73, 126, 0.2);
+        }
+        
+        .radio-options, .checkbox-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 25px;
+            align-items: center;
+        }
+
+        .radio-options label, .checkbox-options label {
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+
+        .radio-options input, .checkbox-options input {
+            margin-right: 8px;
+        }
+
+        .conditional-field {
+            display: none;
+            margin-top: 15px;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: 500;
+        }
+
+        td input, td select {
+            padding: 6px 8px;
+            font-size: 0.95em;
+            width: 100%;
+            min-width: 120px; /* Garante largura mínima */
+        }
+        
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-add-row {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        .upload-section {
+            margin-top: 30px;
+        }
+
+        .upload-item {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .upload-item label {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .upload-item input[type="file"] {
+            font-size: 0.9em;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #2c3a6b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <header class="header">
+            <div class="logo">PROAES</div>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>A.S 280682433</span>
+            </div>
+        </header>
+
+        <main class="form-body">
+            <div class="form-header">
+                <a href="#" class="back-arrow"><i class="fas fa-arrow-left"></i></a>
+                <div class="form-title-section">
+                    <h1 class="form-title">Cadastro Socioeconômico</h1>
+                </div>
+            </div>
+
+            <p class="progress-indicator">Etapa 13 de 14</p>
+
+            <h2 class="section-title">13. COMPOSIÇÃO E RENDA FAMILIAR</h2>
+            <p class="section-description">
+                No quadro abaixo, listar todas as pessoas que compõem o grupo familiar que sejam dependentes ou contribuintes da renda familiar, inclusive o próprio estudante. As informações devem ser referentes ao último mês e registrar renda total (<b>renda bruta mensal, sem descontos</b>) incluindo: Benefícios Previdenciários e sociais.
+            </p>
+
+            <form>
+                <div class="form-group">
+                    <label class="question-label">Reside com:</label>
+                    <div class="radio-options">
+                        <label><input type="radio" name="reside_com" value="pais_mae"> com pai e mãe</label>
+                        <label><input type="radio" name="reside_com" value="irmaos"> com os irmãos</label>
+                        <label><input type="radio" name="reside_com" value="familia_favor"> com uma família de favor</label>
+                        <label><input type="radio" name="reside_com" value="sozinho"> sozinho (a)</label>
+                        <label><input type="radio" name="reside_com" value="mae"> com a mãe</label>
+                        <label><input type="radio" name="reside_com" value="filhos"> com os filhos</label>
+                        <label><input type="radio" name="reside_com" value="amigos"> com amigos</label>
+                        <label><input type="radio" name="reside_com" value="moradia_familia"> moradia mantida pela família</label>
+                        <label><input type="radio" name="reside_com" value="pai"> com o pai</label>
+                        <label><input type="radio" name="reside_com" value="parentes"> com parentes</label>
+                        <label><input type="radio" name="reside_com" value="republica"> em república</label>
+                        <label><input type="radio" name="reside_com" value="toda_familia"> com toda família</label>
+                        <label><input type="radio" name="reside_com" value="conjuge"> com cônjuge</label>
+                        <label><input type="radio" name="reside_com" value="outros" onclick="toggleConditional('reside-com-outros', true)"> Outros</label>
+                    </div>
+                    <div id="reside-com-outros" class="conditional-field">
+                        <label for="reside-com-quais">Quais?</label>
+                        <input type="text" id="reside-com-quais" name="reside-com-quais">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="question-label">Quantas pessoas contribuem para a renda da sua família? (Incluindo você)</label>
+                    <div class="radio-options">
+                        <label><input type="radio" name="contribuintes_renda" value="1"> Uma</label>
+                        <label><input type="radio" name="contribuintes_renda" value="2"> Duas</label>
+                        <label><input type="radio" name="contribuintes_renda" value="3"> Três</label>
+                        <label><input type="radio" name="contribuintes_renda" value="4"> Quatro</label>
+                        <label><input type="radio" name="contribuintes_renda" value="5"> Cinco</label>
+                        <label><input type="radio" name="contribuintes_renda" value="mais_de_5"> Mais de cinco pessoas</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="question-label">Quantidade de pessoas que vivem da renda familiar? (Incluindo você)</label>
+                    <div class="radio-options">
+                        <label><input type="radio" name="dependentes_renda" value="1"> Uma</label>
+                        <label><input type="radio" name="dependentes_renda" value="2"> Duas</label>
+                        <label><input type="radio" name="dependentes_renda" value="3"> Três</label>
+                        <label><input type="radio" name="dependentes_renda" value="4"> Quatro</label>
+                        <label><input type="radio" name="dependentes_renda" value="5"> Cinco</label>
+                        <label><input type="radio" name="dependentes_renda" value="mais_de_5"> Mais de cinco pessoas</label>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="family-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Grau de Parentesco</th>
+                                <th>Idade</th>
+                                <th>Estado Civil</th>
+                                <th>Grau de Escolaridade</th>
+                                <th>Instituição</th>
+                                <th>Situação de Trabalho</th>
+                                <th>Ocupação/Fonte de Renda/Atividade</th>
+                                <th>Renda (R$)</th>
+                                <th>Bolsas/Estágios/Benefícios</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Linhas da tabela serão adicionadas aqui via JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <button type="button" class="btn-add-row" onclick="addFamilyMember()">
+                    <i class="fas fa-plus"></i> Adicionar Membro
+                </button>
+
+                <div class="upload-section">
+                    <h3 class="section-title" style="font-size: 1.1em; border-bottom-width: 1px;">Documentação Comprobatória de Renda</h3>
+                    <div class="upload-item">
+                        <label for="doc-comprovante-renda">Anexar comprovantes de renda de todos os membros da família que contribuem.</label>
+                        <input type="file" id="doc-comprovante-renda" name="doc-comprovante-renda" multiple>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-primary">Salvar e Continuar</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        // Função para mostrar/esconder campos condicionais
+        function toggleConditional(elementId, show) {
+            const element = document.getElementById(elementId);
+            const radioOutros = document.querySelector('input[name="reside_com"][value="outros"]');
+            
+            // Garante que o campo só aparece se o radio 'Outros' estiver marcado
+            if (show && radioOutros.checked) {
+                element.style.display = 'block';
+            } else {
+                element.style.display = 'none';
+                element.querySelector('input').value = '';
+            }
+        }
+        
+        // Adiciona listener para os radios 'reside_com' para esconder o campo 'outros' se outra opção for marcada
+        document.querySelectorAll('input[name="reside_com"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                const isOutros = document.querySelector('input[name="reside_com"][value="outros"]').checked;
+                toggleConditional('reside-com-outros', isOutros);
+            });
+        });
+
+        // Função para adicionar membro na tabela
+        function addFamilyMember() {
+            const tableBody = document.getElementById('family-table').getElementsByTagName('tbody')[0];
+            const newRow = tableBody.insertRow();
+            const rowId = new Date().getTime(); // ID único para os inputs da linha
+
+            newRow.innerHTML = `
+                <td><input type="text" name="nome_${rowId}"></td>
+                <td><input type="text" name="cpf_${rowId}"></td>
+                <td><input type="text" name="parentesco_${rowId}"></td>
+                <td><input type="number" name="idade_${rowId}" min="0"></td>
+                <td>
+                    <select name="estado_civil_${rowId}">
+                        <option value="">Selecione</option>
+                        <option value="01">Solteiro</option>
+                        <option value="02">Casado ou União Estável</option>
+                        <option value="03">Separado Legalmente</option>
+                        <option value="04">Separado sem legalização</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="escolaridade_${rowId}">
+                        <option value="">Selecione</option>
+                        <option value="01">Não Escolarizado</option>
+                        <option value="02">Ens. Fundamental Incompleto</option>
+                        <option value="03">Ens. Fundamental Completo</option>
+                        <option value="04">Ens. Médio Incompleto</option>
+                        <option value="05">Ens. Médio Completo</option>
+                        <option value="06">Ens. Superior Incompleto</option>
+                        <option value="07">Ens. Superior Completo</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="instituicao_${rowId}">
+                        <option value="">Selecione</option>
+                        <option value="01">Pública</option>
+                        <option value="02">Particular</option>
+                        <option value="03">Particular com bolsa parcial</option>
+                        <option value="04">Particular com bolsa integral</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="situacao_trabalho_${rowId}">
+                        <option value="">Selecione</option>
+                        <option value="01">Não Trabalha (Do lar/criança/adolescente)</option>
+                        <option value="02">Desempregado</option>
+                        <option value="03">Situação Indefinida (trabalho informal/biscate/diarista, autônomo, produtor rural)</option>
+                        <option value="04">Servidor Público/ Carteira Assinada</option>
+                        <option value="05">Aposentado/Pensionista</option>
+                        <option value="06">Empresário/Micro Empresário</option>
+                    </select>
+                </td>
+                <td><input type="text" name="ocupacao_${rowId}"></td>
+                <td><input type="number" name="renda_${rowId}" min="0" step="0.01"></td>
+                <td><input type="text" name="beneficios_${rowId}"></td>
+                <td><button type="button" class="btn-danger" onclick="removeFamilyMember(this)">Remover</button></td>
+            `;
+        }
+
+        // Função para remover membro da tabela
+        function removeFamilyMember(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+
+        // Adiciona uma linha inicial ao carregar a página
+        window.onload = () => {
+            addFamilyMember();
+        };
+    </script>
+
+</body>
+</html>
