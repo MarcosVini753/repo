@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Inscrição - Etapa 1</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+        :root {
+            --primary-blue: #39497E;
+            --light-blue: #F0F4FF;
+            --text-color: #333;
+            --label-color: #555;
+            --border-color: #ccc;
+            --white: #fff;
+            --danger-color: #d9534f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light-blue);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .logo {
+            font-weight: 700;
+            font-size: 1.5em;
+            letter-spacing: 1px;
+        }
+
+        .header .user-info {
+            display: flex;
+            align-items: center;
+            font-size: 0.9em;
+        }
+
+        .header .user-info i {
+            font-size: 1.8em;
+            margin-right: 10px;
+        }
+
+        .form-body {
+            padding: 25px 40px;
+        }
+
+        .form-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .back-arrow {
+            font-size: 1.5em;
+            color: var(--label-color);
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        .form-title-section {
+            flex-grow: 1;
+            text-align: center;
+        }
+        
+        .form-title {
+            color: var(--primary-blue);
+            font-size: 1.8em;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .progress-indicator {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 500;
+            color: var(--label-color);
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-blue);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--label-color);
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="date"],
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1em;
+            font-family: 'Roboto', sans-serif;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(57, 73, 126, 0.2);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .input-group > * {
+            flex-grow: 1;
+        }
+        
+        .input-group .rg-uf {
+            flex-grow: 0;
+            width: 80px;
+        }
+
+        .radio-group label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .radio-options {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .radio-options label {
+            font-weight: 400;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .radio-options input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        #deficiencia-especificar-container {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .upload-section {
+            margin-top: 30px;
+        }
+
+        .upload-item {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .upload-item label {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .upload-item input[type="file"] {
+            font-size: 0.9em;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #2c3a6b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <header class="header">
+            <div class="logo">PROAES</div>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>A.S 280682433</span>
+            </div>
+        </header>
+
+        <main class="form-body">
+            <div class="form-header">
+                <a href="#" class="back-arrow"><i class="fas fa-arrow-left"></i></a>
+                <div class="form-title-section">
+                    <h1 class="form-title">Cadastro de Processo Seletivo</h1>
+                </div>
+            </div>
+
+            <p class="progress-indicator">Etapa 1 de 14</p>
+
+            <h2 class="section-title">1. IDENTIFICAÇÃO DO ESTUDANTE</h2>
+
+            <form>
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="nome-completo">Nome Completo</label>
+                        <input type="text" id="nome-completo" name="nome-completo">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="nome-social">Nome Social (se houver)</label>
+                        <input type="text" id="nome-social" name="nome-social">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cpf">CPF</label>
+                        <input type="text" id="cpf" name="cpf">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>RG (Número, Órgão Expedidor e UF)</label>
+                        <div class="input-group">
+                            <input type="text" id="rg-numero" name="rg-numero" placeholder="Número">
+                            <input type="text" id="rg-orgao" name="rg-orgao" placeholder="Órgão Expedidor">
+                            <input type="text" id="rg-uf" name="rg-uf" placeholder="UF" class="rg-uf">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data-nascimento">Data de Nascimento</label>
+                        <input type="date" id="data-nascimento" name="data-nascimento">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sexo">Sexo/Gênero</label>
+                        <select id="sexo" name="sexo">
+                            <option value="">Selecione...</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estado-civil">Estado Civil</label>
+                        <select id="estado-civil" name="estado-civil">
+                            <option value="">Selecione...</option>
+                            <option value="solteiro">Solteiro(a)</option>
+                            <option value="casado">Casado(a)</option>
+                            <option value="divorciado">Divorciado(a)</option>
+                            <option value="viuvo">Viúvo(a)</option>
+                            <option value="uniao-estavel">União Estável</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cor-raca">Cor/Raça</label>
+                        <select id="cor-raca" name="cor-raca">
+                            <option value="">Selecione...</option>
+                            <option value="branca">Branca</option>
+                            <option value="preta">Preta</option>
+                            <option value="parda">Parda</option>
+                            <option value="amarela">Amarela</option>
+                            <option value="indigena">Indígena</option>
+                            <option value="nao-declarar">Não desejo declarar</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <div class="radio-group">
+                            <label>Possui alguma deficiência?</label>
+                            <div class="radio-options">
+                                <label><input type="radio" name="deficiencia" value="sim" onclick="toggleDeficiencia(true)"> Sim</label>
+                                <label><input type="radio" name="deficiencia" value="nao" onclick="toggleDeficiencia(false)" checked> Não</label>
+                            </div>
+                        </div>
+                        <div id="deficiencia-especificar-container">
+                            <label for="deficiencia-especificar">Se "Sim", especificar qual:</label>
+                            <input type="text" id="deficiencia-especificar" name="deficiencia-especificar">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>Dados Bancários</label>
+                        <div class="input-group">
+                            <input type="text" id="banco" name="banco" placeholder="Banco">
+                            <input type="text" id="agencia" name="agencia" placeholder="Agência">
+                            <input type="text" id="conta" name="conta" placeholder="Conta Corrente">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="upload-section">
+                    <h3 class="section-title" style="font-size: 1.1em; border-bottom-width: 1px;">Documentos a Serem Enviados</h3>
+                    <div class="upload-item">
+                        <label for="doc-rg">Documento de identificação com foto (RG)</label>
+                        <input type="file" id="doc-rg" name="doc-rg">
+                    </div>
+                    <div class="upload-item">
+                        <label for="doc-cpf">Cadastro de Pessoa Física (CPF)</label>
+                        <input type="file" id="doc-cpf" name="doc-cpf">
+                    </div>
+                    <div class="upload-item" id="laudo-medico-container" style="display: none;">
+                        <label for="doc-laudo">Laudo médico atualizado (para deficiência)</label>
+                        <input type="file" id="doc-laudo" name="doc-laudo">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Salvar e Continuar</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        function toggleDeficiencia(show) {
+            const especificarContainer = document.getElementById('deficiencia-especificar-container');
+            const laudoContainer = document.getElementById('laudo-medico-container');
+            if (show) {
+                especificarContainer.style.display = 'block';
+                laudoContainer.style.display = 'block';
+            } else {
+                especificarContainer.style.display = 'none';
+                laudoContainer.style.display = 'none';
+                document.getElementById('deficiencia-especificar').value = '';
+            }
+        }
+    </script>
+
+</body>
+</html>
