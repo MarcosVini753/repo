@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Inscrição - Etapa 7</title>
+    <link rel="stylesheet" href="./estilo/style.css">
+    <script src="./js/form-navigation.js"></script>
+</head>
+
+<body>
+    <div class="form-container">
+        <header class="header">
+            <div class="logo">PROAES</div>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>A.S 280682433</span>
+            </div>
+        </header>
+
+        <main class="form-body">
+            <div class="form-header">
+                <a href="#" class="back-arrow"><i class="fas fa-arrow-left"></i></a>
+                <div class="form-title-section">
+                    <h1 class="form-title">Cadastro de Processo Seletivo</h1>
+                </div>
+            </div>
+
+            <p class="progress-indicator">Etapa 7 de 14</p>
+            <h2 class="section-title">7. SITUAÇÃO FINANCEIRA DO ESTUDANTE</h2>
+
+            <form id="formulario">
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label>Você exerce alguma atividade remunerada?</label>
+                        <div class="radio-options">
+                            <label><input type="radio" name="atividade-remunerada" value="sim" onclick="toggleComprovante(true)"> Sim</label>
+                            <label><input type="radio" name="atividade-remunerada" value="nao" onclick="toggleComprovante(false)"> Não</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="fonte-renda">Qual sua principal fonte de renda?</label>
+                        <select id="fonte-renda" name="fonte-renda">
+                            <option value="">Selecione...</option>
+                            <option>Ajuda familiar</option>
+                            <option>Trabalho formal/informal</option>
+                            <option>Pensão</option>
+                            <option>Outros</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="upload-section">
+                    <h3 class="section-title" style="font-size: 1.1em;">Documentos a Serem Enviados</h3>
+                    <div class="upload-item" id="doc-comprovante-renda" style="display:none;">
+                        <label for="doc-renda-estudante">Comprovante de renda (contracheque ou declaração do empregador)</label>
+                        <input type="file" id="doc-renda-estudante" name="doc-renda-estudante">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <a href="#" class="btn-primary btn-voltar">Voltar</a>
+                    <button type="submit" class="btn-primary">Salvar e Continuar</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        function toggleComprovante(show) {
+            document.getElementById('doc-comprovante-renda').style.display = show ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Inscrição - Etapa 13</title>
+    <link rel="stylesheet" href="./estilo/style.css">
+    <script src="./js/form-navigation.js"></script>
+</head>
+
+<body>
+    <div class="form-container">
+        <header class="header">
+            <div class="logo">PROAES</div>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>A.S 280682433</span>
+            </div>
+        </header>
+
+        <main class="form-body">
+            <div class="form-header">
+                <a href="#" class="back-arrow"><i class="fas fa-arrow-left"></i></a>
+                <div class="form-title-section">
+                    <h1 class="form-title">Cadastro de Processo Seletivo</h1>
+                </div>
+            </div>
+
+            <p class="progress-indicator">Etapa 13 de 14</p>
+            <h2 class="section-title">13. RELAÇÃO DOS MEMBROS DO GRUPO FAMILIAR</h2>
+
+            <form id="formulario">
+                <div id="membros-container">
+                    <div class="membro-card">
+                        <h3>Membro 1</h3>
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="nome-m1">Nome Completo</label>
+                                <input type="text" id="nome-m1" name="nome-m1">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nasc-m1">Data de Nascimento</label>
+                                <input type="date" id="nasc-m1" name="nasc-m1">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="parentesco-m1">Parentesco com o Estudante</label>
+                                <input type="text" id="parentesco-m1" name="parentesco-m1">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="estado-civil-m1">Estado Civil</label>
+                                <select id="estado-civil-m1" name="estado-civil-m1">
+                                    <option value="">Selecione...</option>
+                                    <option>Solteiro(a)</option>
+                                    <option>Casado(a)</option>
+                                    <option>Divorciado(a)</option>
+                                    <option>Viúvo(a)</option>
+                                    <option>União Estável</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="escolaridade-m1">Escolaridade</label>
+                                <select id="escolaridade-m1" name="escolaridade-m1">
+                                    <option value="">Selecione...</option>
+                                    <option>Analfabeto(a)</option>
+                                    <option>Ensino Fundamental Incompleto</option>
+                                    <option>Ensino Fundamental Completo</option>
+                                    <option>Ensino Médio Incompleto</option>
+                                    <option>Ensino Médio Completo</option>
+                                    <option>Ensino Superior Incompleto</option>
+                                    <option>Ensino Superior Completo</option>
+                                    <option>Pós-Graduação</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="profissao-m1">Profissão/Ocupação</label>
+                                <input type="text" id="profissao-m1" name="profissao-m1">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="renda-m1">Renda Bruta Mensal (R$)</label>
+                                <input type="number" id="renda-m1" name="renda-m1" step="0.01" min="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="adicionarMembro()">+ Adicionar Membro</button>
+                </div>
+
+                <div class="upload-section">
+                    <h3 class="section-title" style="font-size: 1.1em;">Documentos a Serem Enviados</h3>
+                    <ul>
+                        <li>RG e CPF de todos os membros.</li>
+                        <li>Assalariados: três últimos contracheques.</li>
+                        <li>Autônomos: declaração de atividade informal.</li>
+                        <li>Aposentados/Pensionistas: extrato do benefício.</li>
+                        <li>Desempregados: cópia da Carteira de Trabalho.</li>
+                        <li>Menores de idade: certidão de nascimento.</li>
+                    </ul>
+                </div>
+
+                <div class="form-actions">
+                    <a href="#" class="btn-primary btn-voltar">Voltar</a>
+                    <button type="submit" class="btn-primary">Salvar e Continuar</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        let contador = 1;
+        function adicionarMembro() {
+            contador++;
+            const container = document.getElementById('membros-container');
+            const novo = document.createElement('div');
+            novo.classList.add('membro-card');
+            novo.innerHTML = `
+                <h3>Membro ${contador}</h3>
+                <div class="form-grid">
+                    <div class="form-group full-width"><label>Nome Completo</label><input type="text" name="nome-m${contador}"></div>
+                    <div class="form-group"><label>Data de Nascimento</label><input type="date" name="nasc-m${contador}"></div>
+                    <div class="form-group"><label>Parentesco</label><input type="text" name="parentesco-m${contador}"></div>
+                    <div class="form-group"><label>Estado Civil</label>
+                        <select name="estado-civil-m${contador}">
+                            <option>Solteiro(a)</option><option>Casado(a)</option><option>Divorciado(a)</option>
+                            <option>Viúvo(a)</option><option>União Estável</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Escolaridade</label>
+                        <select name="escolaridade-m${contador}">
+                            <option>Analfabeto(a)</option><option>Ensino Fundamental Incompleto</option><option>Ensino Fundamental Completo</option>
+                            <option>Ensino Médio Incompleto</option><option>Ensino Médio Completo</option>
+                            <option>Ensino Superior Incompleto</option><option>Ensino Superior Completo</option><option>Pós-Graduação</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width"><label>Profissão/Ocupação</label><input type="text" name="profissao-m${contador}"></div>
+                    <div class="form-group"><label>Renda Bruta Mensal (R$)</label><input type="number" step="0.01" min="0" name="renda-m${contador}"></div>
+                </div>`;
+            container.appendChild(novo);
+        }
+    </script>
+</body>
+</html>
