@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Inscrição - Etapa 4</title>
+    <link rel="stylesheet" href="./estilo/style.css">
+    <script src="./js/form-navigation.js"></script>
+</head>
+
+<body>
+    <div class="form-container">
+        <header class="header">
+            <div class="logo">PROAES</div>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>A.S 280682433</span>
+            </div>
+        </header>
+
+        <main class="form-body">
+            <div class="form-header">
+                <a href="#" class="back-arrow"><i class="fas fa-arrow-left"></i></a>
+                <div class="form-title-section">
+                    <h1 class="form-title">Cadastro de Processo Seletivo</h1>
+                </div>
+            </div>
+
+            <p class="progress-indicator">Etapa 4 de 14</p>
+            <h2 class="section-title">4. ENDEREÇO E CARACTERÍSTICAS DE MORADIA DO GRUPO FAMILIAR</h2>
+
+            <form id="formulario">
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label>O endereço do seu grupo familiar é o mesmo que o seu?</label>
+                        <div class="radio-options">
+                            <label><input type="radio" name="endereco-igual" value="sim" onclick="toggleEndereco(false)"> Sim</label>
+                            <label><input type="radio" name="endereco-igual" value="nao" onclick="toggleEndereco(true)"> Não</label>
+                        </div>
+                    </div>
+
+                    <div id="endereco-diferente" style="display:none;">
+                        <div class="form-group">
+                            <label for="cep-familiar">CEP</label>
+                            <input type="text" id="cep-familiar" name="cep-familiar">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="endereco-familiar">Endereço</label>
+                            <input type="text" id="endereco-familiar" name="endereco-familiar">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="numero-familiar">Número</label>
+                            <input type="text" id="numero-familiar" name="numero-familiar">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bairro-familiar">Bairro</label>
+                            <input type="text" id="bairro-familiar" name="bairro-familiar">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cidade-familiar">Cidade</label>
+                            <input type="text" id="cidade-familiar" name="cidade-familiar">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="uf-familiar">UF</label>
+                            <input type="text" id="uf-familiar" name="uf-familiar" maxlength="2">
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="tipo-moradia">A residência onde seu grupo familiar mora é:</label>
+                        <select id="tipo-moradia" name="tipo-moradia">
+                            <option value="">Selecione...</option>
+                            <option value="propria">Própria</option>
+                            <option value="alugada">Alugada</option>
+                            <option value="cedida">Cedida</option>
+                            <option value="financiada">Financiada</option>
+                            <option value="ocupacao">Área de Ocupação</option>
+                            <option value="outra">Outra</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="upload-section">
+                    <h3 class="section-title" style="font-size: 1.1em;">Documentos a Serem Enviados</h3>
+                    <div class="upload-item" id="doc-endereco" style="display:none;">
+                        <label for="doc-comprovante-familiar">Comprovante de residência do grupo familiar</label>
+                        <input type="file" id="doc-comprovante-familiar" name="doc-comprovante-familiar">
+                    </div>
+                    <div class="upload-item" id="doc-contrato" style="display:none;">
+                        <label for="doc-contrato-aluguel">Contrato de aluguel (caso aplicável)</label>
+                        <input type="file" id="doc-contrato-aluguel" name="doc-contrato-aluguel">
+                    </div>
+                    <div class="upload-item" id="doc-financiamento" style="display:none;">
+                        <label for="doc-financiamento">Comprovante da prestação mensal (caso financiada)</label>
+                        <input type="file" id="doc-financiamento" name="doc-financiamento">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <a href="#" class="btn-primary btn-voltar">Voltar</a>
+                    <button type="submit" class="btn-primary">Salvar e Continuar</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        function toggleEndereco(show) {
+            document.getElementById('endereco-diferente').style.display = show ? 'grid' : 'none';
+            document.getElementById('doc-endereco').style.display = show ? 'block' : 'none';
+        }
+
+        document.getElementById('tipo-moradia').addEventListener('change', function () {
+            document.getElementById('doc-contrato').style.display = this.value === 'alugada' ? 'block' : 'none';
+            document.getElementById('doc-financiamento').style.display = this.value === 'financiada' ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>

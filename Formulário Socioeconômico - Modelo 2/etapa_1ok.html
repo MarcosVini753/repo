@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Inscrição - Etapa 1</title>
+    <link rel="stylesheet" href="./estilo/style.css">
+    <script src="./js/form-navigation.js"></script>
+    <script src="./js/progress-bar.js" defer></script>
+</head>
+
+<body>
+    <div class="form-container">
+        <header class="header">
+            <div class="logo">PROAES</div>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>A.S 280682433</span>
+            </div>
+        </header>
+
+        <main class="form-body">
+            <div class="breadcrumb">
+                <span>Página Inicial</span> &gt;
+                <span>Inscrição</span> &gt;
+                <strong>1. Identificação do Estudante</strong>
+            </div>
+
+            <div id="progress-bar-container"></div>
+
+            <p class="required-note">Campos marcados com <span class="required">*</span> são obrigatórios.</p>
+
+            <h2 class="section-title">1. IDENTIFICAÇÃO DO ESTUDANTE</h2>
+
+            <form id="formulario">
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="nome-completo">Nome Completo <span class="required">*</span></label>
+                        <input type="text" id="nome-completo" name="nome-completo" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="nome-social">Nome Social (se houver)</label>
+                        <input type="text" id="nome-social" name="nome-social">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cpf">CPF <span class="required">*</span></label>
+                        <input type="text" id="cpf" name="cpf" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>RG (Número, Órgão Expedidor e UF) <span class="required">*</span></label>
+                        <div class="input-group">
+                            <input type="text" id="rg-numero" name="rg-numero" placeholder="Número" required>
+                            <input type="text" id="rg-orgao" name="rg-orgao" placeholder="Órgão Expedidor" required>
+                            <input type="text" id="rg-uf" name="rg-uf" placeholder="UF" class="rg-uf" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data-nascimento">Data de Nascimento <span class="required">*</span></label>
+                        <input type="date" id="data-nascimento" name="data-nascimento" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sexo">Sexo/Gênero <span class="required">*</span></label>
+                        <select id="sexo" name="sexo" required>
+                            <option value="">Selecione...</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estado-civil">Estado Civil</label>
+                        <select id="estado-civil" name="estado-civil">
+                            <option value="">Selecione...</option>
+                            <option value="solteiro">Solteiro(a)</option>
+                            <option value="casado">Casado(a)</option>
+                            <option value="divorciado">Divorciado(a)</option>
+                            <option value="viuvo">Viúvo(a)</option>
+                            <option value="uniao-estavel">União Estável</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cor-raca">Cor/Raça</label>
+                        <select id="cor-raca" name="cor-raca">
+                            <option value="">Selecione...</option>
+                            <option value="branca">Branca</option>
+                            <option value="preta">Preta</option>
+                            <option value="parda">Parda</option>
+                            <option value="amarela">Amarela</option>
+                            <option value="indigena">Indígena</option>
+                            <option value="nao-declarar">Não desejo declarar</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <div class="radio-group">
+                            <label>Possui alguma deficiência?</label>
+                            <div class="radio-options">
+                                <label><input type="radio" name="deficiencia" value="sim"
+                                        onclick="toggleDeficiencia(true)"> Sim</label>
+                                <label><input type="radio" name="deficiencia" value="nao"
+                                        onclick="toggleDeficiencia(false)" checked> Não</label>
+                            </div>
+                        </div>
+                        <div id="deficiencia-especificar-container">
+                            <label for="deficiencia-especificar">Se "Sim", especificar qual:</label>
+                            <input type="text" id="deficiencia-especificar" name="deficiencia-especificar">
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Dados Bancários</label>
+                        <div class="input-group">
+                            <input type="text" id="banco" name="banco" placeholder="Banco">
+                            <input type="text" id="agencia" name="agencia" placeholder="Agência">
+                            <input type="text" id="conta" name="conta" placeholder="Conta Corrente">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="upload-section">
+                    <h3 class="section-title" style="font-size: 1.1em; border-bottom-width: 1px;">Documentos a Serem
+                        Enviados</h3>
+                    <div class="upload-item">
+                        <label for="doc-rg">Documento de identificação com foto (RG) <span
+                                class="required">*</span></label>
+                        <input type="file" id="doc-rg" name="doc-rg" required>
+                    </div>
+                    <div class="upload-item">
+                        <label for="doc-cpf">Cadastro de Pessoa Física (CPF) <span class="required">*</span></label>
+                        <input type="file" id="doc-cpf" name="doc-cpf" required>
+                    </div>
+                    <div class="upload-item" id="laudo-medico-container" style="display: none;">
+                        <label for="doc-laudo">Laudo médico atualizado (para deficiência)</label>
+                        <input type="file" id="doc-laudo" name="doc-laudo">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <a href="#" class="btn-primary btn-voltar">Voltar</a>
+                    <button type="submit" class="btn-primary">Salvar e Continuar</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        function toggleDeficiencia(show) {
+            const especificarContainer = document.getElementById('deficiencia-especificar-container');
+            const laudoContainer = document.getElementById('laudo-medico-container');
+            especificarContainer.style.display = laudoContainer.style.display = show ? 'block' : 'none';
+            if (!show) document.getElementById('deficiencia-especificar').value = '';
+        }
+
+        function goToStep(step) {
+            window.location.href = `etapa_${step}.html`;
+        }
+    </script>
+</body>
+
+</html>

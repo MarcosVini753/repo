@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Inscrição - Etapa 5</title>
+    <link rel="stylesheet" href="./estilo/style.css">
+    <script src="./js/form-navigation.js"></script>
+    <script src="./js/progress-bar.js" defer></script>
+</head>
+
+<body>
+    <div class="form-container">
+        <header class="header">
+            <div class="logo">PROAES</div>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>A.S 280682433</span>
+            </div>
+        </header>
+
+        <main class="form-body">
+            <div class="breadcrumb">
+                <span>Página Inicial</span> &gt;
+                <span>Inscrição</span> &gt;
+                <strong>5. Escolaridade do Estudante</strong>
+            </div>
+
+            <div id="progress-bar-container"></div>
+
+            <p class="required-note">Campos marcados com <span class="required">*</span> são obrigatórios.</p>
+            
+            <h2 class="section-title">5. ESCOLARIDADE DO ESTUDANTE</h2>
+
+            <form id="formulario">
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="ensino-medio">Tipo de Ensino Médio cursado (integralmente)</label>
+                        <select id="ensino-medio" name="ensino-medio">
+                            <option value="">Selecione...</option>
+                            <option value="publica">Escola Pública</option>
+                            <option value="particular-bolsa">Escola Particular com bolsa integral</option>
+                            <option value="particular-sem-bolsa">Escola Particular sem bolsa</option>
+                            <option value="maior-publica">Maior parte em Escola Pública</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="curso-atual">Curso de Graduação Atual</label>
+                        <input type="text" id="curso-atual" name="curso-atual">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="periodo-ingresso">Período/Ano de Ingresso</label>
+                        <input type="text" id="periodo-ingresso" name="periodo-ingresso" placeholder="Ex: 2024.1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="matricula">Matrícula</label>
+                        <input type="text" id="matricula" name="matricula">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Já concluiu algum curso de graduação?</label>
+                        <div class="radio-options">
+                            <label><input type="radio" name="graduacao-concluida" value="sim"> Sim</label>
+                            <label><input type="radio" name="graduacao-concluida" value="nao"> Não</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="upload-section">
+                    <h3 class="section-title" style="font-size: 1.1em;">Documentos a Serem Enviados</h3>
+                    <div class="upload-item">
+                        <label for="doc-nao-graduado">Declaração de não possuir outra graduação concluída</label>
+                        <input type="file" id="doc-nao-graduado" name="doc-nao-graduado">
+                    </div>
+                    <div class="upload-item">
+                        <label for="doc-comprovante-matricula">Comprovante de Matrícula</label>
+                        <input type="file" id="doc-comprovante-matricula" name="doc-comprovante-matricula">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <a href="#" class="btn-primary btn-voltar">Voltar</a>
+                    <button type="submit" class="btn-primary">Salvar e Continuar</button>
+                </div>
+            </form>
+        </main>
+    </div>
+</body>
+</html>
