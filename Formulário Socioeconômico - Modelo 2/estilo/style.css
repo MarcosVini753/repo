@@ -146,13 +146,6 @@ body {
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-#motivo-morar-separado:disabled {
-    background-color: #f3f3f3;
-    color: #777;
-    cursor: not-allowed;
-    border-color: #ddd;
-}
-
 .form-group {
     display: flex;
     flex-direction: column;
@@ -193,6 +186,17 @@ body {
     box-shadow: 0 0 0 2px rgba(57, 73, 126, 0.2);
     outline: 3px solid var(--primary-blue);
     outline-offset: 2px;
+}
+
+/* Aparência de campo desabilitado */
+.form-group textarea:disabled,
+.form-group input:disabled,
+.form-group select:disabled {
+    background-color: #f3f3f3;
+    color: #777;
+    cursor: not-allowed;
+    border-color: #ddd;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .input-group {

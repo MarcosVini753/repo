@@ -9,6 +9,7 @@
     <script src="./js/form-navigation.js"></script>
     <script src="./js/progress-bar.js" defer></script>
     <script src="./js/msg-alert.js" defer></script>
+    <script src="./js/data-toggle.js" defer></script>
 </head>
 
 <body>
@@ -46,12 +47,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="numero">Número</label>
+                        <label for="numero">Número <span class="required">*</span></label>
                         <input type="text" id="numero" name="numero" placeholder="Nº">
                     </div>
 
                     <div class="form-group">
-                        <label for="bairro">Bairro</label>
+                        <label for="bairro">Bairro <span class="required">*</span></label>
                         <input type="text" id="bairro" name="bairro" placeholder="Digite o nome do bairro">
                     </div>
 
@@ -62,12 +63,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="cidade">Cidade</label>
+                        <label for="cidade">Cidade <span class="required">*</span></label>
                         <input type="text" id="cidade" name="cidade" placeholder="Ex.: Rio Branco">
                     </div>
 
                     <div class="form-group">
-                        <label for="uf">UF</label>
+                        <label for="uf">UF <span class="required">*</span></label>
                         <select id="uf" name="uf">
                             <option value="">Selecione...</option>
                             <option>AC</option>
@@ -101,9 +102,9 @@
                     </div>
 
                     <div class="form-group full-width">
-                        <label>Localização</label>
+                        <label>Localização <span class="required">*</span></label>
                         <div class="radio-options">
-                            <label><input type="radio" name="localizacao" value="rural"> Rural</label>
+                            <label><input type="radio" name="localizacao" value="rural" required aria-required="true"> Rural</label>
                             <label><input type="radio" name="localizacao" value="urbana"> Urbana</label>
                         </div>
                     </div>
@@ -136,19 +137,44 @@
                         </select>
                     </div>
 
+                    <!-- Situação moradia -->
+
                     <div class="form-group full-width">
                         <label for="situacao-moradia">Situação de moradia do grupo familiar <span
                                 class="required">*</span></label>
-                        <select id="situacao-moradia" name="situacao-moradia" required aria-required="true">
+                        <select id="situacao-moradia" name="situacao-moradia" data-toggle-field="situacao-moradia"
+                            required aria-required="true">
                             <option value="">Selecione...</option>
                             <option value="imovel-proprio">Imóvel próprio</option>
                             <option value="imovel-alugado">Imóvel alugado</option>
                             <option value="imovel-financiado">Imóvel financiado</option>
                             <option value="imovel-cedido">Imóvel cedido</option>
                         </select>
-
-                        <div id="extras-moradia" class="form-group full-width"></div>
                     </div>
+
+                    <div class="form-group full-width" data-show-when-field="situacao-moradia"
+                        data-show-when="imovel-alugado">
+                        <label for="valor-aluguel">Se alugado, valor do aluguel (R$): <span
+                                class="required">*</span></label>
+                        <input type="number" id="valor-aluguel" name="valor-aluguel" min="0" step="0.01"
+                            placeholder="0,00">
+                    </div>
+
+                    <div class="form-group full-width" data-show-when-field="situacao-moradia"
+                        data-show-when="imovel-financiado">
+                        <label for="valor-parcela">Se financiado, valor da parcela (R$): <span
+                                class="required">*</span></label>
+                        <input type="number" id="valor-parcela" name="valor-parcela" min="0" step="0.01"
+                            placeholder="0,00">
+                    </div>
+
+                    <div class="form-group full-width" data-show-when-field="situacao-moradia"
+                        data-show-when="imovel-cedido">
+                        <label for="cedido-por">Imóvel cedido. Por quem? <span class="required">*</span></label>
+                        <input type="text" id="cedido-por" name="cedido-por">
+                    </div>
+
+                    <!--  -->
 
                     <div class="form-group full-width">
                         <label for="caracteristicas-moradia">Marque as características que melhor descrevem
@@ -166,7 +192,7 @@
                     </div>
 
                     <div class="form-group full-width">
-                        <label>Indique o número de cômodos:</label>
+                        <label>Indique o número de cômodos: <span class="required">*</span></label>
                         <div class="input-group">
                             <input type="number" name="quartos" placeholder="Quartos">
                             <input type="number" name="salas" placeholder="Salas">
@@ -178,13 +204,16 @@
                     <div class="form-group full-width">
                         <label>Você reside com a sua família? <span class="required">*</span></label>
                         <div class="radio-options">
-                            <label><input type="radio" name="reside-com-familia" value="sim"> Sim</label>
-                            <label><input type="radio" name="reside-com-familia" value="nao"> Não</label>
+                            <label><input type="radio" name="reside-com-familia" value="sim" required aria-required="true"
+                                    data-toggle-target="#motivo-morar-separado" data-enable-value="nao"> Sim</label>
+                            <label><input type="radio" name="reside-com-familia" value="nao"
+                                    data-toggle-target="#motivo-morar-separado" data-enable-value="nao"> Não</label>
                         </div>
                     </div>
 
                     <div class="form-group full-width">
-                        <label for="motivo-morar-separado">Se não, indique a razão pela qual mora separado:</label>
+                        <label for="motivo-morar-separado">Indique aqui a razão pela qual você mora separado da sua
+                            família:</label>
                         <textarea id="motivo-morar-separado" name="motivo-morar-separado" rows="3" disabled></textarea>
                     </div>
                 </div>
@@ -210,56 +239,6 @@
             </form>
         </main>
     </div>
-
-    <script>
-        /* ------ SITUAÇÃO DA MORADIA ------ */
-        const situacaoSelect = document.getElementById('situacao-moradia');
-        const extrasContainer = document.getElementById('extras-moradia');
-
-        situacaoSelect.addEventListener('change', function() {
-            const value = this.value;
-            extrasContainer.innerHTML = ''; // Limpa campos anteriores
-
-            if (value === 'imovel-alugado') {
-                extrasContainer.innerHTML = `
-                    <label for="valor-aluguel">Se alugado, valor do aluguel (R$): <span class="required">*</span></label>
-                    <input type="number" id="valor-aluguel" name="valor-aluguel" min="0" step="0.01" placeholder="0,00" required aria-required="true">
-                `;
-            } else if (value === 'imovel-financiado') {
-                extrasContainer.innerHTML = `
-                    <label for="valor-parcela">Se financiado, valor da parcela (R$): <span class="required">*</span></label>
-                    <input type="number" id="valor-parcela" name="valor-parcela" min="0" step="0.01" placeholder="0,00" required aria-required="true">
-                `;
-            } else if (value === 'imovel-cedido') {
-                extrasContainer.innerHTML = `
-                    <label for="cedido-por">Imóvel cedido. Por quem? <span class="required">*</span></label>
-                    <input type="text" id="cedido-por" name="cedido-por" required aria-required="true">
-                `;
-            }
-
-            if (extrasContainer.innerHTML.trim() !== '') {
-                extrasContainer.classList.add('visible');
-            }
-        });
-
-        /* ------ RESIDE COM A FAMÍLIA ------ */
-        const radios = document.querySelectorAll('input[name="reside-com-familia"]');
-        const textarea = document.getElementById('motivo-morar-separado');
-
-        textarea.disabled = true;
-
-        radios.forEach(radio => {
-            radio.addEventListener('change', () => {
-                if (radio.value === 'nao' && radio.checked) {
-                    textarea.disabled = false;
-                    textarea.focus();
-                } else {
-                    textarea.disabled = true;
-                    // textarea.value = '';
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>

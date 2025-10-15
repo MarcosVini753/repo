@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
             tipo: 'sucesso'
         }));
 
-        // Redireciona para a próxima página
         const nextPage = `./etapa_${nextStep}.html`;
         window.location.href = nextPage;
     });
