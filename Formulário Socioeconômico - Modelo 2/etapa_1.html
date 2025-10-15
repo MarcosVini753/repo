@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Inscrição - Etapa 1</title>
+    <link rel="stylesheet" href="./estilo/style.css">
+    <script src="./js/form-navigation.js"></script>
+    <script src="./js/progress-bar.js" defer></script>
+    <script src="./js/msg-alert.js" defer></script>
+</head>
+
+<body>
+    <div class="form-container">
+        <header role="banner" class="header">
+            <div class="logo">PROAES</div>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>A.S 280682433</span>
+            </div>
+        </header>
+
+        <main role="main" class="form-body">
+            <div class="breadcrumb">
+                <span>Página Inicial</span> &gt;
+                <span>Inscrição</span> &gt;
+                <strong>1. Identificação do Estudante</strong>
+            </div>
+
+            <div role="alert" id="msg-status"></div>
+
+            <div id="progress-bar-container"></div>
+
+            <p class="required-note">Campos marcados com <span class="required">*</span> são obrigatórios.</p>
+
+            <h2 class="section-title">1. IDENTIFICAÇÃO DO ESTUDANTE</h2>
+
+            <form id="form-etapa-1" aria-labelledby="titulo-form">
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="nome-completo">Nome Completo <span class="required">*</span></label>
+                        <input type="text" id="nome-completo" name="nome-completo" placeholder="Digite seu nome completo" required aria-required="true">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="nome-social">Nome Social</label>
+                        <input type="text" id="nome-social" name="nome-social">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="curso">Curso <span class="required">*</span></label>
+                        <input type="text" id="curso" name="curso" placeholder="Ex: Licenciatura em Letras" required aria-required="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="matricula">Nº da Matrícula <span class="required">*</span></label>
+                        <input type="text" id="matricula" name="matricula" placeholder="Número conforme o SIE" required aria-required="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="periodo">Período</label>
+                        <input type="text" id="periodo" name="periodo" placeholder="Ex: 5">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="semestre">Semestre</label>
+                        <input type="text" id="semestre" name="semestre" placeholder="Ex: 2025.1">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Turno <span class="required">*</span></label>
+                        <div class="radio-options">
+                            <label><input type="radio" name="turno" value="matutino" required aria-required="true"> Matutino</label>
+                            <label><input type="radio" name="turno" value="vespertino"> Vespertino</label>
+                            <label><input type="radio" name="turno" value="noturno"> Noturno</label>
+                            <label><input type="radio" name="turno" value="integral"> Integral</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Qual seu campus? <span class="required">*</span></label>
+                        <div class="radio-options">
+                            <label><input type="radio" name="campus" value="rio-branco" required aria-required="true"> Campus Rio
+                                Branco</label>
+                            <label><input type="radio" name="campus" value="cruzeiro-do-sul"> Campus Cruzeiro do
+                                Sul</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data-nascimento">Data de Nascimento <span class="required">*</span></label>
+                        <input type="date" id="data-nascimento" name="data-nascimento" required aria-required="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="idade">Idade</label>
+                        <input type="number" id="idade" name="idade" min="0" placeholder="Sua idade atual">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Sexo <span class="required">*</span></label>
+                        <div class="radio-options">
+                            <label><input type="radio" name="sexo" value="feminino" required aria-required="true"> Feminino</label>
+                            <label><input type="radio" name="sexo" value="masculino"> Masculino</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Documento de Identificação <span class="required">*</span></label>
+                        <div class="input-group" role="group" aria-labelledby="rg-label">
+                            <input type="text" id="rg" name="rg" placeholder="RG" required aria-required="true">
+                            <input type="text" id="orgao-emissor" name="orgao-emissor" placeholder="Órgão Emissor"
+                                required aria-required="true">
+                            <input type="text" id="uf-rg" name="uf-rg" placeholder="UF" class="rg-uf" required aria-required="true">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cpf">CPF <span class="required">*</span></label>
+                        <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" required aria-required="true">
+                    </div>
+
+                    <div></div>
+                    <div></div>
+
+                    <div class="form-group">
+                        <label for="nacionalidade">Nacionalidade</label>
+                        <input type="text" id="nacionalidade" name="nacionalidade" placeholder="Ex: Brasileira">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="naturalidade">Naturalidade</label>
+                        <input type="text" id="naturalidade" name="naturalidade" placeholder="Cidade onde nasceu">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="uf-origem">UF de Origem</label>
+                        <select id="uf-origem" name="uf-origem">
+                            <option value="">Selecione...</option>
+                            <option>AC</option>
+                            <option>AL</option>
+                            <option>AP</option>
+                            <option>AM</option>
+                            <option>BA</option>
+                            <option>CE</option>
+                            <option>DF</option>
+                            <option>ES</option>
+                            <option>GO</option>
+                            <option>MA</option>
+                            <option>MT</option>
+                            <option>MS</option>
+                            <option>MG</option>
+                            <option>PA</option>
+                            <option>PB</option>
+                            <option>PR</option>
+                            <option>PE</option>
+                            <option>PI</option>
+                            <option>RJ</option>
+                            <option>RN</option>
+                            <option>RS</option>
+                            <option>RO</option>
+                            <option>RR</option>
+                            <option>SC</option>
+                            <option>SP</option>
+                            <option>SE</option>
+                            <option>TO</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="cor-etnia">Cor/Etnia <span class="required">*</span></label>
+                        <select id="cor-etnia" name="cor-etnia" required aria-required="true">
+                            <option value="">Selecione...</option>
+                            <option value="preta">Preta</option>
+                            <option value="parda">Parda</option>
+                            <option value="branca">Branca</option>
+                            <option value="amarela">Amarela</option>
+                            <option value="indigena">Indígena</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="estado-civil">Estado Civil</label>
+                        <select id="estado-civil" name="estado-civil">
+                            <option value="">Selecione...</option>
+                            <option value="solteiro">Solteiro(a)</option>
+                            <option value="casado">Casado(a)</option>
+                            <option value="separado">Separado/Divorciado(a)</option>
+                            <option value="uniao-estavel">União Estável</option>
+                            <option value="viuvo">Viúvo(a)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="upload-section">
+                    <h3 class="section-title" style="font-size: 1.1em; border-bottom-width: 1px;">Documentos a Serem
+                        Enviados</h3>
+                    <div class="upload-item">
+                        <label for="doc-rg">Documento de identificação com foto (RG/CPF/CNH) <span
+                                class="required">*</span></label>
+                        <input type="file" id="doc-rg" name="doc-rg" accept=".pdf" aria-describedby="doc-rg-desc" 
+                                required aria-required="true">
+                    </div>
+                    <div class="upload-item">
+                        <label for="doc-cpf">Comprovante de matrícula <span class="required">*</span></label>
+                        <input type="file" id="doc-cpf" name="doc-cpf" required aria-required="true">
+                    </div>
+                    <div class="upload-item" id="laudo-medico-container" style="display: no ne;">
+                        <label for="doc-laudo">Laudo médico atualizado (para deficiência)</label>
+                        <input type="file" id="doc-laudo" name="doc-laudo">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <a href="#" class="btn-primary btn-voltar">Voltar</a>
+                    <button type="submit" class="btn-primary">Salvar e Continuar</button>
+                </div>
+            </form>
+        </main>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Inscrição - Etapa 2</title>
+    <link rel="stylesheet" href="./estilo/style.css">
+    <script src="./js/form-navigation.js"></script>
+</head>
+
+<body>
+    <div class="form-container">
+        <header class="header">
+            <div class="logo">PROAES</div>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>A.S 280682433</span>
+            </div>
+        </header>
+
+        <main class="form-body">
+            <div class="form-header">
+                <a href="etapa_1.html" class="back-arrow"><i class="fas fa-arrow-left"></i></a>
+                <div class="form-title-section">
+                    <h1 class="form-title">Cadastro de Processo Seletivo</h1>
+                </div>
+            </div>
+
+            <p class="progress-indicator">Etapa 2 de 14</p>
+            <h2 class="section-title">2. ENDEREÇO E CARACTERÍSTICAS DE MORADIA DO ESTUDANTE (ATUAL)</h2>
+
+            <form id="form-etapa-2">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="cep">CEP</label>
+                        <input type="text" id="cep" name="cep">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="endereco">Endereço (Rua, Av., etc.)</label>
+                        <input type="text" id="endereco" name="endereco">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numero">Número</label>
+                        <input type="text" id="numero" name="numero">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="complemento">Complemento</label>
+                        <input type="text" id="complemento" name="complemento">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" id="bairro" name="bairro">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" id="cidade" name="cidade">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="uf">UF</label>
+                        <input type="text" id="uf" name="uf" maxlength="2">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="tipo-residencia">Tipo de Residência</label>
+                        <select id="tipo-residencia" name="tipo-residencia">
+                            <option value="">Selecione...</option>
+                            <option value="casa">Casa</option>
+                            <option value="apartamento">Apartamento</option>
+                            <option value="quarto">Quarto/Cômodo</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Serviços disponíveis na residência:</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="servicos" value="energia"> Energia Elétrica</label>
+                            <label><input type="checkbox" name="servicos" value="agua"> Água Tratada</label>
+                            <label><input type="checkbox" name="servicos" value="saneamento"> Saneamento Básico</label>
+                            <label><input type="checkbox" name="servicos" value="lixo"> Coleta de Lixo</label>
+                            <label><input type="checkbox" name="servicos" value="internet"> Acesso à Internet</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="upload-section">
+                    <h3 class="section-title">Documentos a Serem Enviados</h3>
+                    <div class="upload-item">
+                        <label for="doc-comprovante-residencia">Comprovante de residência atualizado</label>
+                        <input type="file" id="doc-comprovante-residencia" name="doc-comprovante-residencia">
+                    </div>
+                    <div class="upload-item">
+                        <label for="doc-declaracao-residencia">Declaração do titular (se o comprovante não estiver em nome do estudante)</label>
+                        <input type="file" id="doc-declaracao-residencia" name="doc-declaracao-residencia">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <a href="etapa_1.html" class="btn-primary btn-voltar">Voltar</a>
+                    <button type="submit" class="btn-primary">Salvar e Continuar</button>
+                </div>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Inscrição - Etapa 3</title>
+    <link rel="stylesheet" href="./estilo/style.css">
+    <script src="./js/form-navigation.js"></script>
+</head>
+
+<body>
+    <div class="form-container">
+        <header class="header">
+            <div class="logo">PROAES</div>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>A.S 280682433</span>
+            </div>
+        </header>
+
+        <main class="form-body">
+            <div class="form-header">
+                <a href="etapa_2.html" class="back-arrow"><i class="fas fa-arrow-left"></i></a>
+                <div class="form-title-section">
+                    <h1 class="form-title">Cadastro de Processo Seletivo</h1>
+                </div>
+            </div>
+
+            <p class="progress-indicator">Etapa 3 de 14</p>
+            <h2 class="section-title">3. ORIGEM DA MORADIA DO ESTUDANTE</h2>
+
+            <form id="form-etapa-3">
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="com-quem-morava">Com quem você morava antes de ingressar na UFAC?</label>
+                        <select id="com-quem-morava" name="com-quem-morava">
+                            <option value="">Selecione...</option>
+                            <option value="pais">Pais</option>
+                            <option value="conjuge">Cônjuge</option>
+                            <option value="parentes">Parentes</option>
+                            <option value="sozinho">Sozinho(a)</option>
+                            <option value="amigos">Amigos</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="cidade-origem">Cidade/Estado em que residia antes de ingressar na UFAC</label>
+                        <input type="text" id="cidade-origem" name="cidade-origem">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="situacao-moradia-origem">Situação de moradia na cidade de origem</label>
+                        <select id="situacao-moradia-origem" name="situacao-moradia-origem">
+                            <option value="">Selecione...</option>
+                            <option value="propria">Própria</option>
+                            <option value="cedida">Cedida</option>
+                            <option value="alugada">Alugada</option>
+                            <option value="financiada">Financiada</option>
+                            <option value="outra">Outra</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="upload-section">
+                    <h3 class="section-title">Documentos a Serem Enviados</h3>
+                    <p>Não há documentos obrigatórios nesta etapa.</p>
+                </div>
+
+                <div class="form-actions">
+                    <a href="etapa_2.html" class="btn-primary btn-voltar">Voltar</a>
+                    <button type="submit" class="btn-primary">Salvar e Continuar</button>
+                </div>
+            </form>
+        </main>
+    </div>
+</body>
+</html>
