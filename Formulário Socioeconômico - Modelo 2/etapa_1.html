@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./estilo/style.css">
     <script src="./js/form-navigation.js"></script>
     <script src="./js/progress-bar.js" defer></script>
+    <script src="./js/msg-alert.js" defer></script>
 </head>
 
 <body>
@@ -27,13 +28,15 @@
                 <strong>1. Identificação do Estudante</strong>
             </div>
 
+            <div role="alert" id="msg-status"></div>
+
             <div id="progress-bar-container"></div>
 
             <p class="required-note">Campos marcados com <span class="required">*</span> são obrigatórios.</p>
 
             <h2 class="section-title">1. IDENTIFICAÇÃO DO ESTUDANTE</h2>
 
-            <form id="formulario" aria-labelledby="titulo-form">
+            <form id="form-etapa-1" aria-labelledby="titulo-form">
                 <div class="form-grid">
                     <div class="form-group full-width">
                         <label for="nome-completo">Nome Completo <span class="required">*</span></label>
@@ -208,7 +211,6 @@
                         <input type="file" id="doc-laudo" name="doc-laudo">
                     </div>
                 </div>
-
 
                 <div class="form-actions">
                     <a href="#" class="btn-primary btn-voltar">Voltar</a>

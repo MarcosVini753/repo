@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="./estilo/style.css">
     <script src="./js/form-navigation.js"></script>
     <script src="./js/progress-bar.js" defer></script>
+    <script src="./js/msg-alert.js" defer></script>
 </head>
 
 <body>
     <div class="form-container">
-        <header class="header">
+        <header role="banner" class="header">
             <div class="logo">PROAES</div>
             <div class="user-info">
                 <i class="fas fa-user-circle"></i>
@@ -20,12 +21,14 @@
             </div>
         </header>
 
-        <main class="form-body">
+        <main role="main" class="form-body">
             <div class="breadcrumb">
                 <span>Página Inicial</span> &gt;
                 <span>Inscrição</span> &gt;
-                <strong>2. Endereço e Características de Moradia do Estudante</strong>
+                <strong>2. Endereço e Características de Moradia</strong>
             </div>
+
+            <div role="alert" id="msg-status"></div>
 
             <div id="progress-bar-container"></div>
 
@@ -33,70 +36,164 @@
 
             <h2 class="section-title">2. ENDEREÇO E CARACTERÍSTICAS DE MORADIA DO ESTUDANTE</h2>
 
-            <form id="form-etapa-2">
+            <form id="form-etapa-2" aria-labelledby="titulo-form">
                 <div class="form-grid">
-                    <div class="form-group">
-                        <label for="cep">CEP <span class="required">*</label>
-                        <input type="text" id="cep" name="cep">
-                    </div>
 
                     <div class="form-group full-width">
-                        <label for="endereco">Endereço (Rua, Av., etc.) <span class="required">*</label>
-                        <input type="text" id="endereco" name="endereco">
+                        <label for="rua">Rua/Avenida <span class="required">*</span></label>
+                        <input type="text" id="rua" name="rua" placeholder="Digite o nome da rua ou avenida" required
+                            aria-required="true">
                     </div>
 
                     <div class="form-group">
                         <label for="numero">Número</label>
-                        <input type="text" id="numero" name="numero">
+                        <input type="text" id="numero" name="numero" placeholder="Nº">
                     </div>
 
                     <div class="form-group">
-                        <label for="complemento">Complemento</label>
-                        <input type="text" id="complemento" name="complemento">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="bairro">Bairro <span class="required">*</label>
-                        <input type="text" id="bairro" name="bairro">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="cidade">Cidade <span class="required">*</label>
-                        <input type="text" id="cidade" name="cidade">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="uf">UF <span class="required">*</label>
-                        <input type="text" id="uf" name="uf" maxlength="2">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" id="bairro" name="bairro" placeholder="Digite o nome do bairro">
                     </div>
 
                     <div class="form-group full-width">
-                        <label for="tipo-residencia">Tipo de Residência <span class="required">*</label>
-                        <select id="tipo-residencia" name="tipo-residencia">
+                        <label for="ponto-referencia">Ponto de referência</label>
+                        <input type="text" id="ponto-referencia" name="ponto-referencia"
+                            placeholder="Ex.: próximo ao supermercado...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" id="cidade" name="cidade" placeholder="Ex.: Rio Branco">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="uf">UF</label>
+                        <select id="uf" name="uf">
                             <option value="">Selecione...</option>
-                            <option value="casa">Casa</option>
-                            <option value="apartamento">Apartamento</option>
-                            <option value="quarto">Quarto/Cômodo</option>
-                            <option value="outro">Outro</option>
+                            <option>AC</option>
+                            <option>AL</option>
+                            <option>AP</option>
+                            <option>AM</option>
+                            <option>BA</option>
+                            <option>CE</option>
+                            <option>DF</option>
+                            <option>ES</option>
+                            <option>GO</option>
+                            <option>MA</option>
+                            <option>MT</option>
+                            <option>MS</option>
+                            <option>MG</option>
+                            <option>PA</option>
+                            <option>PB</option>
+                            <option>PR</option>
+                            <option>PE</option>
+                            <option>PI</option>
+                            <option>RJ</option>
+                            <option>RN</option>
+                            <option>RS</option>
+                            <option>RO</option>
+                            <option>RR</option>
+                            <option>SC</option>
+                            <option>SP</option>
+                            <option>SE</option>
+                            <option>TO</option>
                         </select>
                     </div>
 
                     <div class="form-group full-width">
-                        <label>Serviços disponíveis na residência:</label>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" name="servicos" value="energia"> Energia Elétrica</label>
-                            <label><input type="checkbox" name="servicos" value="agua"> Água Tratada</label>
-                            <label><input type="checkbox" name="servicos" value="saneamento"> Saneamento Básico</label>
-                            <label><input type="checkbox" name="servicos" value="lixo"> Coleta de Lixo</label>
-                            <label><input type="checkbox" name="servicos" value="internet"> Acesso à Internet</label>
+                        <label>Localização</label>
+                        <div class="radio-options">
+                            <label><input type="radio" name="localizacao" value="rural"> Rural</label>
+                            <label><input type="radio" name="localizacao" value="urbana"> Urbana</label>
                         </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefone-fixo">Telefone fixo</label>
+                        <input type="text" id="telefone-fixo" name="telefone-fixo" placeholder="(xx) xxxx-xxxx">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="celular">Celular</label>
+                        <input type="text" id="celular" name="celular" placeholder="(xx) xxxxx-xxxx">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="exemplo@email.com">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="tipo-moradia">Tipo de moradia <span class="required">*</span></label>
+                        <select id="tipo-moradia" name="tipo-moradia" required aria-required="true">
+                            <option value="">Selecione...</option>
+                            <option value="casa">Casa</option>
+                            <option value="apartamento">Apartamento</option>
+                            <option value="quarto-alugado">Quarto alugado</option>
+                            <option value="residencia-estudantil">Residência Estudantil CZS</option>
+                            <option value="chacara">Chácara/Colônia</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="situacao-moradia">Situação de moradia do grupo familiar <span
+                                class="required">*</span></label>
+                        <select id="situacao-moradia" name="situacao-moradia" required aria-required="true">
+                            <option value="">Selecione...</option>
+                            <option value="imovel-proprio">Imóvel próprio</option>
+                            <option value="imovel-alugado">Imóvel alugado</option>
+                            <option value="imovel-financiado">Imóvel financiado</option>
+                            <option value="imovel-cedido">Imóvel cedido</option>
+                        </select>
+
+                        <div id="extras-moradia" class="form-group full-width"></div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="caracteristicas-moradia">Marque as características que melhor descrevem
+                            seu domicílio <span class="required">*</span></label>
+                        <select id="caracteristicas-moradia" name="caracteristicas-moradia" required
+                            aria-required="true">
+                            <option value="">Selecione...</option>
+                            <option value="madeira">Madeira</option>
+                            <option value="alvenaria">Alvenaria</option>
+                            <option value="mista">Mista</option>
+                            <option value="com-acabamento">Residência com acabamento</option>
+                            <option value="sem-acabamento">Residência sem acabamento (reboco, pintura, piso)</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Indique o número de cômodos:</label>
+                        <div class="input-group">
+                            <input type="number" name="quartos" placeholder="Quartos">
+                            <input type="number" name="salas" placeholder="Salas">
+                            <input type="number" name="cozinhas" placeholder="Cozinhas">
+                            <input type="number" name="banheiros" placeholder="Banheiros">
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Você reside com a sua família? <span class="required">*</span></label>
+                        <div class="radio-options">
+                            <label><input type="radio" name="reside-com-familia" value="sim"> Sim</label>
+                            <label><input type="radio" name="reside-com-familia" value="nao"> Não</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="motivo-morar-separado">Se não, indique a razão pela qual mora separado:</label>
+                        <textarea id="motivo-morar-separado" name="motivo-morar-separado" rows="3" disabled></textarea>
                     </div>
                 </div>
 
                 <div class="upload-section">
                     <h3 class="section-title">Documentos a Serem Enviados</h3>
                     <div class="upload-item">
-                        <label for="doc-comprovante-residencia">Comprovante de residência atualizado <span class="required">*</label>
+                        <label for="doc-comprovante-residencia">Comprovante de residência atualizado <span
+                                class="required">*</label>
                         <input type="file" id="doc-comprovante-residencia" name="doc-comprovante-residencia">
                     </div>
                     <div class="upload-item">
@@ -113,6 +210,56 @@
             </form>
         </main>
     </div>
+
+    <script>
+        /* ------ SITUAÇÃO DA MORADIA ------ */
+        const situacaoSelect = document.getElementById('situacao-moradia');
+        const extrasContainer = document.getElementById('extras-moradia');
+
+        situacaoSelect.addEventListener('change', function() {
+            const value = this.value;
+            extrasContainer.innerHTML = ''; // Limpa campos anteriores
+
+            if (value === 'imovel-alugado') {
+                extrasContainer.innerHTML = `
+                    <label for="valor-aluguel">Se alugado, valor do aluguel (R$): <span class="required">*</span></label>
+                    <input type="number" id="valor-aluguel" name="valor-aluguel" min="0" step="0.01" placeholder="0,00" required aria-required="true">
+                `;
+            } else if (value === 'imovel-financiado') {
+                extrasContainer.innerHTML = `
+                    <label for="valor-parcela">Se financiado, valor da parcela (R$): <span class="required">*</span></label>
+                    <input type="number" id="valor-parcela" name="valor-parcela" min="0" step="0.01" placeholder="0,00" required aria-required="true">
+                `;
+            } else if (value === 'imovel-cedido') {
+                extrasContainer.innerHTML = `
+                    <label for="cedido-por">Imóvel cedido. Por quem? <span class="required">*</span></label>
+                    <input type="text" id="cedido-por" name="cedido-por" required aria-required="true">
+                `;
+            }
+
+            if (extrasContainer.innerHTML.trim() !== '') {
+                extrasContainer.classList.add('visible');
+            }
+        });
+
+        /* ------ RESIDE COM A FAMÍLIA ------ */
+        const radios = document.querySelectorAll('input[name="reside-com-familia"]');
+        const textarea = document.getElementById('motivo-morar-separado');
+
+        textarea.disabled = true;
+
+        radios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.value === 'nao' && radio.checked) {
+                    textarea.disabled = false;
+                    textarea.focus();
+                } else {
+                    textarea.disabled = true;
+                    // textarea.value = '';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

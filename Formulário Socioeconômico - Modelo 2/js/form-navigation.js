@@ -1,13 +1,11 @@
-// form-navigation.js
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
     if (!form) return;
 
-    // Captura o nome do arquivo atual (ex: etapa_2.html)
     const currentPage = window.location.pathname.split("/").pop();
     const match = currentPage.match(/etapa_(\d+)\.html/i);
 
-    if (!match) return; // se não estiver no formato esperado, não faz nada
+    if (!match) return;
 
     const currentStep = parseInt(match[1]);
     const nextStep = currentStep + 1;
@@ -15,7 +13,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Redireciona ao enviar o formulário
     form.addEventListener("submit", (event) => {
-        event.preventDefault(); // impede o reload
+        event.preventDefault();
+
+        // Armazena a mensagem para a próxima página
+        sessionStorage.setItem('formMensagem', JSON.stringify({
+            texto: 'Etapa salva com sucesso!',
+            tipo: 'sucesso'
+        }));
+
+        // Redireciona para a próxima página
         const nextPage = `./etapa_${nextStep}.html`;
         window.location.href = nextPage;
     });

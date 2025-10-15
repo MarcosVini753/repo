@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="./estilo/style.css">
     <script src="./js/form-navigation.js"></script>
     <script src="./js/progress-bar.js" defer></script>
+    <script src="./js/msg-alert.js" defer></script>
 </head>
 
 <body>
     <div class="form-container">
-        <header class="header">
+        <header role="banner" class="header">
             <div class="logo">PROAES</div>
             <div class="user-info">
                 <i class="fas fa-user-circle"></i>
@@ -20,50 +21,57 @@
             </div>
         </header>
 
-        <main class="form-body">
+        <main role="main" class="form-body">
             <div class="breadcrumb">
                 <span>Página Inicial</span> &gt;
                 <span>Inscrição</span> &gt;
                 <strong>3. Origem da Moradia do Estudante</strong>
             </div>
 
+            <div role="alert" id="msg-status"></div>
             <div id="progress-bar-container"></div>
 
             <p class="required-note">Campos marcados com <span class="required">*</span> são obrigatórios.</p>
 
             <h2 class="section-title">3. ORIGEM DA MORADIA DO ESTUDANTE</h2>
 
-            <form id="form-etapa-3">
+            <form id="form-etapa-3" aria-labelledby="titulo-form">
                 <div class="form-grid">
+
                     <div class="form-group full-width">
-                        <label for="com-quem-morava">Com quem você morava antes de ingressar na UFAC?</label>
-                        <select id="com-quem-morava" name="com-quem-morava">
-                            <option value="">Selecione...</option>
-                            <option value="pais">Pais</option>
-                            <option value="conjuge">Cônjuge</option>
-                            <option value="parentes">Parentes</option>
-                            <option value="sozinho">Sozinho(a)</option>
-                            <option value="amigos">Amigos</option>
-                            <option value="outros">Outros</option>
-                        </select>
+                        <label>Morava em outro Município/Estado antes de ingressar na UFAC?</label>
+                        <div class="radio-options">
+                            <label><input type="radio" name="morava-fora" value="sim"> Sim</label>
+                            <label><input type="radio" name="morava-fora" value="nao"> Não</label>
+                        </div>
                     </div>
 
                     <div class="form-group full-width">
-                        <label for="cidade-origem">Cidade/Estado em que residia antes de ingressar na UFAC</label>
-                        <input type="text" id="cidade-origem" name="cidade-origem">
+                        <label for="municipio-anterior">Qual Município/Estado?</label>
+                        <input type="text" id="municipio-anterior" name="municipio-anterior"
+                            placeholder="Informe o local de origem">
                     </div>
 
                     <div class="form-group full-width">
-                        <label for="situacao-moradia-origem">Situação de moradia na cidade de origem</label>
-                        <select id="situacao-moradia-origem" name="situacao-moradia-origem">
-                            <option value="">Selecione...</option>
-                            <option value="propria">Própria</option>
-                            <option value="cedida">Cedida</option>
-                            <option value="alugada">Alugada</option>
-                            <option value="financiada">Financiada</option>
-                            <option value="outra">Outra</option>
-                        </select>
+                        <label>Motivo que ocasionou a mudança:</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="motivo-mudanca" value="estudo"> Estudo</label>
+                            <label><input type="checkbox" name="motivo-mudanca" value="emprego"> Emprego</label>
+                            <label><input type="checkbox" name="motivo-mudanca" value="familia"> Família</label>
+                            <label><input type="checkbox" name="motivo-mudanca" value="outros"> Outros</label>
+                        </div>
                     </div>
+
+                    <div class="form-group full-width">
+                        <label>Quanto tempo reside no Município de Rio Branco ou Cruzeiro do Sul?</label>
+                        <div class="radio-options">
+                            <label><input type="radio" name="tempo-residencia" value="06m-1a"> 06 meses a 1 ano</label>
+                            <label><input type="radio" name="tempo-residencia" value="1-3a"> 1 a 3 anos</label>
+                            <label><input type="radio" name="tempo-residencia" value="3-5a"> 3 a 5 anos</label>
+                            <label><input type="radio" name="tempo-residencia" value="mais-5a"> Mais de 5 anos</label>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="upload-section">
