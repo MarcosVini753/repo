@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggles = document.querySelectorAll('[data-toggle-target]');
 
     toggles.forEach(toggle => {
-        toggle.addEventListener('change', () => {
+
+        function updateToggle() {
             const targetSelector = toggle.getAttribute('data-toggle-target');
             const enableValue = toggle.getAttribute('data-enable-value');
             const targets = document.querySelectorAll(targetSelector);
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const isActive = toggle.checked && toggle.value === enableValue;
 
             targets.forEach(target => {
+                console.log('target = ', target);
                 if (isActive) {
                     target.disabled = false;
                     target.classList.remove('disabled');
@@ -18,7 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     target.classList.add('disabled');
                 }
             });
-        });
+        }
+
+        toggle.addEventListener('change', updateToggle);
+        updateToggle();
     });
 
     // Seleciona todos os campos controladores (ex.: select, radio)
@@ -35,9 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const showWhen = target.getAttribute("data-show-when");
                 if (showWhen === selectedValue) {
                     target.style.display = "";
+                    target.disabled = true;
                     target.removeAttribute("aria-hidden");
                 } else {
                     target.style.display = "none";
+                    target.disabled = false;
                     target.setAttribute("aria-hidden", "true");
                 }
             });

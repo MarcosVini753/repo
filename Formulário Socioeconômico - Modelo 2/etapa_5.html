@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="./estilo/style.css">
     <script src="./js/form-navigation.js"></script>
     <script src="./js/progress-bar.js" defer></script>
+    <script src="./js/msg-alert.js" defer></script>
+    <script src="./js/data-toggle.js" defer></script>
 </head>
 
 <body>
     <div class="form-container">
-        <header class="header">
+        <header role="banner" class="header">
             <div class="logo">PROAES</div>
             <div class="user-info">
                 <i class="fas fa-user-circle"></i>
@@ -20,74 +22,176 @@
             </div>
         </header>
 
-        <main class="form-body">
+        <main role="main" class="form-body">
             <div class="breadcrumb">
                 <span>Página Inicial</span> &gt;
                 <span>Inscrição</span> &gt;
                 <strong>5. Escolaridade do Estudante</strong>
             </div>
 
+            <div role="alert" id="msg-status"></div>
+
             <div id="progress-bar-container"></div>
 
             <p class="required-note">Campos marcados com <span class="required">*</span> são obrigatórios.</p>
-            
+
             <h2 class="section-title">5. ESCOLARIDADE DO ESTUDANTE</h2>
 
-            <form id="formulario">
+            <form id="form-etapa-5" aria-labelledby="titulo-form">
                 <div class="form-grid">
+
                     <div class="form-group full-width">
-                        <label for="ensino-medio">Tipo de Ensino Médio cursado (integralmente)</label>
-                        <select id="ensino-medio" name="ensino-medio">
+                        <label>Concluiu o Ensino Médio em: <span class="required">*</span></label>
+                        <select id="caracteristicas-moradia" name="caracteristicas-moradia" required
+                            aria-required="true">
                             <option value="">Selecione...</option>
                             <option value="publica">Escola Pública</option>
-                            <option value="particular-bolsa">Escola Particular com bolsa integral</option>
-                            <option value="particular-sem-bolsa">Escola Particular sem bolsa</option>
-                            <option value="maior-publica">Maior parte em Escola Pública</option>
+                            <option value="particular">Escola Particular</option>
+                            <option value="particular-bolsa-parcial">Escola Particular com Bolsa Parcial</option>
+                            <option value="particular-bolsa-integral">Escola Particular com Bolsa Integral</option>
                         </select>
                     </div>
 
                     <div class="form-group full-width">
-                        <label for="curso-atual">Curso de Graduação Atual</label>
-                        <input type="text" id="curso-atual" name="curso-atual">
+                        <label>Já possui graduação? <span class="required">*</span></label>
+                        <div class="radio-options">
+                            <label>
+                                <input type="radio" name="graduacao" value="sim"
+                                    data-toggle-target="#curso-graduacao, #instituicao-graduacao, #ano-conclusao"
+                                    data-enable-value="sim" required aria-required="true"> Sim
+                            </label>
+                            <label>
+                                <input type="radio" name="graduacao" value="nao"
+                                    data-toggle-target="#curso-graduacao, #instituicao-graduacao, #ano-conclusao"
+                                    data-enable-value="sim"> Não
+                            </label>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="periodo-ingresso">Período/Ano de Ingresso</label>
-                        <input type="text" id="periodo-ingresso" name="periodo-ingresso" placeholder="Ex: 2024.1">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="matricula">Matrícula</label>
-                        <input type="text" id="matricula" name="matricula">
+                    <div id="info-graduacao" class="form-group full-width" data-show-when-field="graduacao"
+                        data-show-when="sim">
+                        <label>Informe os detalhes da graduação: <span class="required">*</span></label>
+                        <div class="input-group">
+                            <input type="text" id="curso-graduacao" name="curso-graduacao" placeholder="Curso" required
+                                aria-required="true">
+                            <input type="text" id="instituicao-graduacao" name="instituicao-graduacao"
+                                placeholder="Instituição" required aria-required="true">
+                            <input type="text" id="ano-conclusao" name="ano-conclusao" placeholder="Ano de Conclusão"
+                                required aria-required="true">
+                        </div>
                     </div>
 
                     <div class="form-group full-width">
-                        <label>Já concluiu algum curso de graduação?</label>
+                        <label>Cursa mais de uma graduação atualmente? <span class="required">*</span></label>
                         <div class="radio-options">
-                            <label><input type="radio" name="graduacao-concluida" value="sim"> Sim</label>
-                            <label><input type="radio" name="graduacao-concluida" value="nao"> Não</label>
+                            <label>
+                                <input type="radio" name="duas-graduacoes" value="sim"
+                                    data-toggle-target="#curso-adicional, #instituicao-adicional"
+                                    data-enable-value="sim" required aria-required="true"> Sim
+                            </label>
+                            <label>
+                                <input type="radio" name="duas-graduacoes" value="nao"
+                                    data-toggle-target="#curso-adicional, #instituicao-adicional"
+                                    data-enable-value="sim"> Não
+                            </label>
                         </div>
                     </div>
-                </div>
 
-                <div class="upload-section">
-                    <h3 class="section-title" style="font-size: 1.1em;">Documentos a Serem Enviados</h3>
-                    <div class="upload-item">
-                        <label for="doc-nao-graduado">Declaração de não possuir outra graduação concluída</label>
-                        <input type="file" id="doc-nao-graduado" name="doc-nao-graduado">
+                    <div id="info-duas-graduacoes" class="form-group full-width" data-show-when-field="duas-graduacoes"
+                        data-show-when="sim">
+                        <label>Informe os detalhes do outro curso: <span class="required">*</span></label>
+                        <div class="input-group">
+                            <input type="text" id="curso-adicional" name="curso-adicional" placeholder="Curso" required>
+                            <input type="text" id="instituicao-adicional" name="instituicao-adicional"
+                                placeholder="Instituição" required>
+                        </div>
                     </div>
-                    <div class="upload-item">
-                        <label for="doc-comprovante-matricula">Comprovante de Matrícula</label>
-                        <input type="file" id="doc-comprovante-matricula" name="doc-comprovante-matricula">
+
+                    <div class="form-group full-width">
+                        <label>Forma de ingresso na UFAC: <span class="required">*</span></label>
+                        <select id="forma-ingresso" name="forma-ingresso" data-toggle-field="forma-ingresso" required
+                            aria-required="true">
+                            <option value="">Selecione...</option>
+                            <option value="vestibular">Vestibular</option>
+                            <option value="sisu">Sisu</option>
+                            <option value="transferencia">Transferência</option>
+                            <option value="portador-diploma">Portador de Diploma</option>
+                        </select>
                     </div>
+
+                    <div class="form-group full-width" data-show-when-field="forma-ingresso" data-show-when="sisu">
+                        <label>Qual sua modalidade de ingresso? <span class="required">*</span></label>
+                        <select id="modalidade-sisu" name="modalidade-sisu" data-toggle-field="modalidade-sisu" required
+                            aria-required="true">
+                            <option value="">Selecione...</option>
+                            <option value="A0">Ampla Concorrência (A0)</option>
+                            <option value="V4283">Deficiência auditiva - Letras Libras (V4283)</option>
+                            <option value="V4284">Candidatos com deficiência (V4284)</option>
+                            <option value="B4302">Ensino Médio em escolas da região do Acre (B4302)</option>
+                            <option value="cotas">Sistema de Cotas</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width" data-show-when-field="modalidade-sisu" data-show-when="cotas">
+                        <label>Se assinalou cotas, indique qual:</label>
+                        <div class="radio-options">
+                            <label><input type="radio" name="cota" value="L1"> L1 - Renda ≤ 1,5 SM, escola
+                                pública</label>
+                            <label><input type="radio" name="cota" value="L2"> L2 - Pretos, pardos ou indígenas, renda ≤
+                                1,5 SM, escola pública</label>
+                            <label><input type="radio" name="cota" value="L5"> L5 - Escola pública, independente da
+                                renda</label>
+                            <label><input type="radio" name="cota" value="L6"> L6 - Pretos, pardos ou indígenas, escola
+                                pública, independente da renda</label>
+                            <label><input type="radio" name="cota" value="L9"> L9 - Deficiência, renda ≤ 1,5 SM, escola
+                                pública</label>
+                            <label><input type="radio" name="cota" value="L10"> L10 - Deficiência + PPI, renda ≤ 1,5 SM,
+                                escola pública</label>
+                            <label><input type="radio" name="cota" value="L13"> L13 - Deficiência, escola pública,
+                                independente da renda</label>
+                            <label><input type="radio" name="cota" value="L14"> L14 - Deficiência + PPI, escola pública,
+                                independente da renda</label>
+                        </div>
+                        <select id="modalidade-sisu" name="modalidade-sisu" data-toggle-field="modalidade-sisu" required
+                            aria-required="true">
+                            <option value="">Selecione...</option>
+                            <option value="A0">L1 - Renda ≤ 1,5 SM, escola pública</option>
+                            <option value="V4283">L2 - Pretos, pardos ou indígenas, renda ≤ 1,5 SM, escola pública</option>
+                            <option value="V4284">Candidatos com deficiência (V4284)</option>
+                            <option value="B4302">Ensino Médio em escolas da região do Acre (B4302)</option>
+                            <option value="cotas">Sistema de Cotas</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Possui algum membro familiar que estuda na Ufac?</label>
+                        <div class="radio-options">
+                            <label><input type="radio" name="familiar-ufac" value="sim"
+                                    data-toggle-field="familiar-ufac"> Sim</label>
+                            <label><input type="radio" name="familiar-ufac" value="nao"
+                                    data-toggle-field="familiar-ufac"> Não</label>
+                        </div>
+                    </div>
+
+                    <div id="info-familiar" class="form-group full-width" data-show-when-field="familiar-ufac"
+                        data-show-when="sim">
+                        <label>Informe os dados do familiar:</label>
+                        <div class="input-group">
+                            <input type="text" name="parentesco" placeholder="Parentesco">
+                            <input type="text" name="nome-familiar" placeholder="Nome do familiar">
+                            <input type="text" name="curso-familiar" placeholder="Curso">
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="form-actions">
-                    <a href="#" class="btn-primary btn-voltar">Voltar</a>
+                    <a href="etapa_4.html" class="btn-primary btn-voltar">Voltar</a>
                     <button type="submit" class="btn-primary">Salvar e Continuar</button>
                 </div>
             </form>
         </main>
     </div>
 </body>
+
 </html>

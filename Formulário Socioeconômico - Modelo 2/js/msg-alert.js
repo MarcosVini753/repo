@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (mensagem) {
         const { texto, tipo } = JSON.parse(mensagem);
         mostrarMensagem(texto, tipo);
-        sessionStorage.removeItem('formMensagem'); // limpa após exibir
+        sessionStorage.removeItem('formMensagem');
     }
 
     // Torna a função global para outros scripts se necessário
